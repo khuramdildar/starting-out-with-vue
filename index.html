@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+
+<body>
+
+    <div class="nav-bar"></div>
+
+    <div id="para">
+        <div class="product">
+            <div class="product-image">
+                <img :src="image" alt="" srcset="">
+            </div>
+            <div class="product-info">
+                <h1>{{ title }}</h1>
+                <a :href="link">Vue Documentation</a>
+                <p v-if="inventory">In Stock</p>
+                <p v-else :class="{ outOfStock: !inStock}">Out of Stock</p>
+                <span v-if="onSale">On Sale</span>
+                <ul>
+                    <li v-for="detail in details">{{detail}}</li>
+                </ul>
+                <div v-for="(varient, index) in varients" 
+                    :key="varient.varientId" 
+                    class="color-box"
+                    :style="{background: varient.color}" 
+                    @mouseover="productImage(index)">
+                </div>
+                <button @click="addToCart" 
+                    :disabled="!inStock" 
+                    :class="{disabledButton : !inStock}">Add to
+                Cart</button>
+                <span v-if="removeCart">
+                    <button @click="removeFromCart">Del from Cart</button>
+                </span>
+                <div class="cart">
+                    <p>Cart({{cart}})</p>
+                </div>
+            </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+        <script src="test.js"></script>
+</body>
+
+</html>
